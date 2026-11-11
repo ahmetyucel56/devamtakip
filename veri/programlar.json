@@ -1,0 +1,1874 @@
+{
+  "donem": "2026-2027 Güz",
+  "kaynak": "Niksar MYO 2026-2027 Güz Yarıyılı Ders Programı (PDF)",
+  "bolumler": [
+    {
+      "ad": "Bankacılık ve Sigortacılık",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "Z/03",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "FBS101",
+          "ad": "Bankacılığa Giriş",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Zeynep DENK ORAK",
+          "derslik": "1/22",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "FBS103",
+          "ad": "Genel Hukuk",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "1/26",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "FBS105",
+          "ad": "Genel İşletme",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "1/44",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "FBS107",
+          "ad": "Genel Muhasebe I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Zeynep DENK ORAK",
+          "derslik": "1/44",
+          "gunler": {
+            "Perşembe": 4
+          }
+        },
+        {
+          "kod": "FBS109",
+          "ad": "İktisada Giriş I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "1/22",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "FBS111",
+          "ad": "Sigortacılığa Giriş",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "1/26",
+          "gunler": {
+            "Pazartesi": 2,
+            "Salı": 1
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "TOGÜ0861",
+          "ad": "Organik Tarım",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "1/26",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/03",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "FBS201",
+          "ad": "Mali Tablolar Analizi",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Reşid Çiğdem",
+          "derslik": "1/46",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "FBS203",
+          "ad": "Bankacılık ve Sigortacılık Ürün ve Hizmetleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "1/25",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "FBS205",
+          "ad": "Finansal Hizmetler Pazarlaması",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "2/25",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "FBS207",
+          "ad": "Finansal Matematik",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zeynep DENK ORAK",
+          "derslik": "1/02",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "FBS209",
+          "ad": "Bankacılık ve Sigortacılık Otomasyon Uygulamaları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zeynep DENK ORAK",
+          "derslik": "SLAB",
+          "gunler": {
+            "Cuma": 4
+          }
+        },
+        {
+          "kod": "FBS211",
+          "ad": "Topluma Hizmet Uygulamaları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "Z/03",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "FBS217",
+          "ad": "Mesleki Çözümleme I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "1/03",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "FBS237",
+          "ad": "Banka ve Sigorta Muhasebesi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zeynep DENK ORAK",
+          "derslik": "1/25",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Bilgisayar Programcılığı",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "BP101",
+          "ad": "Matematik",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Bilal İNAN",
+          "derslik": "Z/03",
+          "gunler": {
+            "Perşembe": 4
+          }
+        },
+        {
+          "kod": "BP103",
+          "ad": "Algoritma ve Programlama 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Bilal İNAN",
+          "derslik": "TLAB",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "BP105",
+          "ad": "Bilgisayar Donanımı",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Muhammet Esat ÖZDAĞ",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "BP107",
+          "ad": "Grafik ve Animasyon",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Zuhal Koca",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Muhammet Esat ÖZDAĞ",
+          "derslik": "SLAB",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "TOGÜ094",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Muhammet Esat ÖZDAĞ",
+          "derslik": "Z/03",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "TOGÜ1131",
+          "ad": "Digital Okuryazarlık",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Bilal İNAN",
+          "derslik": "2/30",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "BP201",
+          "ad": "İnternet Programcılığı I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Bilal İNAN",
+          "derslik": "TLAB",
+          "gunler": {
+            "Perşembe": 4
+          }
+        },
+        {
+          "kod": "BP203",
+          "ad": "Veri Tabanı I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zuhal Koca",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "BP205",
+          "ad": "Nesne Tabanlı Programlama",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zuhal Koca",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Cuma": 4
+          }
+        },
+        {
+          "kod": "BP207",
+          "ad": "Mesleki Çözümleme I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Muhammet Esat ÖZDAĞ",
+          "derslik": "TLAB",
+          "gunler": {
+            "Pazartesi": 4,
+            "Salı": 4
+          }
+        },
+        {
+          "kod": "BP225",
+          "ad": "Oyun Programlama",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zuhal Koca",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "BP243",
+          "ad": "Yapay Zekanın Temelleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Zuhal Koca",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "BP245",
+          "ad": "Veri Madenciliği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Bilal İNAN",
+          "derslik": "TLAB",
+          "gunler": {
+            "Salı": 3
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Elektrik Makineleri Bakım ve Onarım",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "1/26",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "EMBO101",
+          "ad": "Doğru Akım Devre Analizi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Murat Uğurlu",
+          "derslik": "Z/03",
+          "gunler": {
+            "Salı": 4
+          }
+        },
+        {
+          "kod": "EMBO103",
+          "ad": "Elektrik Makineleri 1",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Emrah ESER",
+          "derslik": "2/01",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "EMBO105",
+          "ad": "Matematik 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Çiğdem ÖZTAŞ",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "EMBO107",
+          "ad": "Ölçme Tekniği",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yasemin İÇMEZ",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "ENF100-EMBO",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "SEC103",
+          "ad": "Üniversite Seçmeli Dersi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/46",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "EMBO201",
+          "ad": "Elektrik Makineleri III",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Emrah ESER",
+          "derslik": "2/01",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "EMBO203",
+          "ad": "Elektrik Makinelerinde Durum İzleme ve Bakım",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Emrah ESER",
+          "derslik": "2/01",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "EMBO205",
+          "ad": "Sarım Tekniği I",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Emrah ESER",
+          "derslik": "2/02",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "EMBO207",
+          "ad": "Elektromekanik Kumanda Sistemleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Murat Uğurlu",
+          "derslik": "1/25",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "EMBO215",
+          "ad": "Yenilenebilir Enerji Sistemleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Hüseyin AKTAŞ",
+          "derslik": "2/02",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "EMBO221",
+          "ad": "Bilgisaayr Destekli Çizim",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ulvi Taha YILDIRIM",
+          "derslik": "TLAB",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "EMBO235",
+          "ad": "İş Sağlığı ve Güvenliği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/02",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "EMBO237",
+          "ad": "Güç Elektroniği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ömer Öztürk",
+          "derslik": "1/03",
+          "gunler": {
+            "Cuma": 3
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Halkla İlişkiler ve Tanıtım",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR101",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "Z/03",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Hanifi Karaçınar",
+          "derslik": "SLAB",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "HİT1001",
+          "ad": "Genel Hukuk Bilgisi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "1/22",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "HİT1003",
+          "ad": "Halkla İlişkiler",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi İlknur Şahin",
+          "derslik": "1/44",
+          "gunler": {
+            "Salı": 2,
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "HİT1005",
+          "ad": "İletişime Giriş",
+          "sinif": 1,
+          "hoca": "Doç. Dr. Alptekin Develi",
+          "derslik": "1/03",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "HİT1007",
+          "ad": "Genel İşletme",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Hanifi Karaçınar",
+          "derslik": "1/46",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "HİT1009",
+          "ad": "Ekonomi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "HİT2001",
+          "ad": "Halkla İlişkiler Kampanyaları",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi İlknur Şahin",
+          "derslik": "Z/03",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "HİT2003",
+          "ad": "Reklamcılık",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi İlknur Şahin",
+          "derslik": "1/03",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "HİT2005",
+          "ad": "Tüketici Davranışları",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Hanifi Karaçınar",
+          "derslik": "2/02",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "HİT2007",
+          "ad": "Medya Okuryazarlığı",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi İlknur Şahin",
+          "derslik": "1/44",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "HİT2027",
+          "ad": "Siyasal İletişim",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Onur Binbaş",
+          "derslik": "1/03",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "HİT2029",
+          "ad": "Araştırma Yöntemleri",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Alptekin Develi",
+          "derslik": "2/25",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "HİT2053",
+          "ad": "Kurumsal İletişim",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Hanifi Karaçınar",
+          "derslik": "1/02",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "HİT2055",
+          "ad": "Örgütsel Davranış",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Alptekin Develi",
+          "derslik": "1/02",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "HİT2057",
+          "ad": "Dijitalleşme ve Yapay Zeka",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Alptekin Develi",
+          "derslik": "1/02",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Mekatronik",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "TLAB",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "ING101",
+          "ad": "İngilizce 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "MT101",
+          "ad": "Bilgisayar Destekli Tasarım 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Ulvi Taha YILDIRIM",
+          "derslik": "TLAB",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "MT103",
+          "ad": "Doğru Akım Devre Analizi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Murat Uğurlu",
+          "derslik": "Z/21",
+          "gunler": {
+            "Pazartesi": 2,
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "MT105",
+          "ad": "Malzeme Teknolojisi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Hüseyin AKTAŞ",
+          "derslik": "1/46",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "MT107",
+          "ad": "Matematik 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Çiğdem ÖZTAŞ",
+          "derslik": "1/25",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MT109",
+          "ad": "Mekatronik Sistem Esasları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Ömer Öztürk",
+          "derslik": "2/01",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "MT111",
+          "ad": "Sayısal Elektronik",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yasemin İÇMEZ",
+          "derslik": "Z/21",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "MT201",
+          "ad": "Elektrik Motorları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ulvi Taha YILDIRIM",
+          "derslik": "1/26",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MT203",
+          "ad": "Elektromekanik Kmanda Sistemleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Murat Uğurlu",
+          "derslik": "1/44",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "MT205",
+          "ad": "Ölçme Tekniği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Yasemin İÇMEZ",
+          "derslik": "1/26",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "MT225",
+          "ad": "Güç Elektroniği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ömer Öztürk",
+          "derslik": "1/03",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "MT233",
+          "ad": "Mikro Denetleyici Uygulamaları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ulvi Taha YILDIRIM",
+          "derslik": "1/46",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MT241",
+          "ad": "Sistem Analiz Tasarımı I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Yasemin İÇMEZ",
+          "derslik": "1/03",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "MT243",
+          "ad": "Yenilenebilir Enerji Sistemleri I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Hüseyin AKTAŞ",
+          "derslik": "1/44",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "SEÇ1021",
+          "ad": "Gastronomi Turizmi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Hüseyin AKTAŞ",
+          "derslik": "2/22",
+          "gunler": {
+            "Salı": 2
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Muhasebe ve Vergi Uygulamaları",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlkeleri ve İnkılap Tarihi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "1/02",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "SLAB",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "MV101",
+          "ad": "Genel Muhasebe I",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Saadet Gündüz",
+          "derslik": "1/25",
+          "gunler": {
+            "Salı": 2,
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MV103",
+          "ad": "Genel İşletme",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Saadet Gündüz",
+          "derslik": "2/30",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MV105",
+          "ad": "Mikro Ekonomi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Kenan Yeteroğlu",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "MV107",
+          "ad": "Temel Hukuk",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "1/25",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "MV109",
+          "ad": "Ticari Matematik",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Saadet Gündüz",
+          "derslik": "1/44",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce 1",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "MV201",
+          "ad": "E-muhasebe Uygulamaları I",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Reşid Çiğdem",
+          "derslik": "SLAB",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "MV203",
+          "ad": "Maliyet Muhasebesi",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Reşid Çiğdem",
+          "derslik": "1/44",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MV207",
+          "ad": "Vergi Hukuku",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "1/22",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "MV211",
+          "ad": "Muhasebe Denetimi",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Reşid Çiğdem",
+          "derslik": "1/25",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "MV237",
+          "ad": "Girişimcilik",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "Z/03",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "MV275",
+          "ad": "Yönetim ve Organizasyon",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Saadet Gündüz",
+          "derslik": "1/03",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "MV279",
+          "ad": "İş ve Sosyal Güvenlik Hukuku",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Yusuf Kansu",
+          "derslik": "1/25",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Ormancılık ve Orman Ürünleri",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılapları I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "Z/21",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilgisayar Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "TLAB",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "ORM101",
+          "ad": "Genel Botanik",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Betül Tahmaz",
+          "derslik": "2/26",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "ORM103",
+          "ad": "Toprak İlmi",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Ergün Kahveci",
+          "derslik": "2/26",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "ORM105",
+          "ad": "Zooloji",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Betül Tahmaz",
+          "derslik": "2/26",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "ORM107",
+          "ad": "Meteoroloji ve Klimatoloji",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Betül Tahmaz",
+          "derslik": "2/26",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "ORM109",
+          "ad": "Harita ve Ölçme Bilgisi",
+          "sinif": 1,
+          "hoca": "Dr. Öğr. Üyesi Ergün Kahveci",
+          "derslik": "2/26",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "ORM111",
+          "ad": "Matematik I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Çiğdem ÖZTAŞ",
+          "derslik": "Z/21",
+          "gunler": {
+            "Çarşamba": 2,
+            "Perşembe": 1
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "ORM201",
+          "ad": "Ağaçlandırma ve Fidanlık Tekniği",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi AKKIN SEMERCİ",
+          "derslik": "2/02",
+          "gunler": {
+            "Perşembe": 4
+          }
+        },
+        {
+          "kod": "ORM203",
+          "ad": "Ormancılık Politikası ve Hukuku",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Betül Tahmaz",
+          "derslik": "2/26",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "ORM205",
+          "ad": "Silvikültür",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi AKKIN SEMERCİ",
+          "derslik": "2/02",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "ORM207",
+          "ad": "Ormancılık Uygulamaları I",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi AKKIN SEMERCİ",
+          "derslik": "2/02",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "ORM209",
+          "ad": "Orman Koruma",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Ergün Kahveci",
+          "derslik": "2/26",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "ORM223",
+          "ad": "Egzotik Ağaçlar",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Betül Tahmaz",
+          "derslik": "2/26",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "ORM241",
+          "ad": "Süs Bitki Yetiştiriciliği",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi AKKIN SEMERCİ",
+          "derslik": "2/26",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "ORM245",
+          "ad": "Erozyon ve Sel Kontrolü",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi Ergün Kahveci",
+          "derslik": "2/26",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "TOGÜ0801",
+          "ad": "Temel Fotoğrafçılık",
+          "sinif": 2,
+          "hoca": "Dr. Öğr. Üyesi AKKIN SEMERCİ",
+          "derslik": "2/02",
+          "gunler": {
+            "Perşembe": 2
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Sivil Savunma ve İtfaiyecilik",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojileri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "Z/21",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "SSİ101",
+          "ad": "Matematik",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Çiğdem ÖZTAŞ",
+          "derslik": "1/22",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "SSİ117",
+          "ad": "İtfaiye Araç ve Malzeme Bilgisi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "1/02",
+          "gunler": {
+            "Salı": 4
+          }
+        },
+        {
+          "kod": "SSİ123",
+          "ad": "Yanma ve Yangın Bilgisi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "2/02",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "SSİ125",
+          "ad": "İtfaiyecilik Spor Eğitimi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "Yüzme Salonu",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "SSİ127",
+          "ad": "İtfaiyecilik ve Yangın Güv.giriş",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "Z/21",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "TOGÜ094",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "1/02",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "SSİ217",
+          "ad": "Acil Durum Eylem Planı Hazırlama",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "1/22",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "SSİ219",
+          "ad": "Orman Yangınları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "1/03",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "SSİ227",
+          "ad": "İtfaiyecilik Spor Eğitimi III",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "Yüzme Salonu",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "SSİ249",
+          "ad": "Yangına Müdahale Teknikleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "Z/21",
+          "gunler": {
+            "Salı": 4
+          }
+        },
+        {
+          "kod": "SSİ251",
+          "ad": "Yangın Tesisatı ve Proje Bilgisi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Gökhan El",
+          "derslik": "1/02",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "SSİ253",
+          "ad": "Uçak Kaza Kırım ve Yangınla Mücadele",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "1/03",
+          "gunler": {
+            "Salı": 2,
+            "Perşembe": 1
+          }
+        },
+        {
+          "kod": "TOGÜ0491",
+          "ad": "Proje Yönetimi ve Hazırlama",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Mustafa Yıldız",
+          "derslik": "1/03",
+          "gunler": {
+            "Perşembe": 2
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Turizm ve Otel İşletmeciliği",
+      "dersler": [
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlke ve İnkılap Tarihi I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "Z/21",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "ENF100",
+          "ad": "Bilişim Teknolojleri ve Ofis Yazılımları",
+          "sinif": 1,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "SLAB",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "TO1001",
+          "ad": "Genel Turizm",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "TO1003",
+          "ad": "Yiyecek İçecek Servisi I",
+          "sinif": 1,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Pazartesi": 2,
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "TO1045",
+          "ad": "Kat Hizmetleri",
+          "sinif": 1,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "2/30",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "TO1047",
+          "ad": "Önbüro Hizmetleri",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "TO2021",
+          "ad": "Konukla İletişim",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "TO2023",
+          "ad": "Mesleki Yabancı Dil I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "2/30",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "TO2041",
+          "ad": "Tur.ope.ve Seyahat Acenteliği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "1/46",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "TO2043",
+          "ad": "Meslek Etiği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "1/46",
+          "gunler": {
+            "Perşembe": 2
+          }
+        },
+        {
+          "kod": "TO2045",
+          "ad": "Turizm Cografyası I",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "2/30",
+          "gunler": {
+            "Çarşamba": 2
+          }
+        },
+        {
+          "kod": "TO2047",
+          "ad": "Menü Planlama",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Cuma": 3
+          }
+        },
+        {
+          "kod": "TO2049",
+          "ad": "İnsan Kaynakları Yönetimi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "TO2051",
+          "ad": "Ziyafet Servisi Yönetimi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Serpil Keskin Pulluk",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Salı": 5
+          }
+        },
+        {
+          "kod": "TO2069",
+          "ad": "Önbüroda Vardiye İşlemleri",
+          "sinif": 2,
+          "hoca": "Doç. Dr. Cemil Gündüz",
+          "derslik": "TURİZM ODASI",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        }
+      ]
+    },
+    {
+      "ad": "Yenilenebilir Enerji Teknikerliği",
+      "dersler": [
+        {
+          "kod": "DGR001",
+          "ad": "Değerlerimiz",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Tuna DAŞIRAN",
+          "derslik": "1/02",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "YET101",
+          "ad": "Teknik Resim",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Ulvi Taha YILDIRIM",
+          "derslik": "TLAB",
+          "gunler": {
+            "Cuma": 4
+          }
+        },
+        {
+          "kod": "YET103",
+          "ad": "Yenilenebilir Enerji Kaynaklarına Giriş",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "2/01",
+          "gunler": {
+            "Pazartesi": 3
+          }
+        },
+        {
+          "kod": "YET105",
+          "ad": "Malzeme Teknoloji ve Seçimi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Hüseyin AKTAŞ",
+          "derslik": "Z/21",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "YET107",
+          "ad": "Elektrik Devreleri",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/02",
+          "gunler": {
+            "Cuma": 4
+          }
+        },
+        {
+          "kod": "YET109",
+          "ad": "Matematik",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Çiğdem ÖZTAŞ",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "YET111",
+          "ad": "Bilgi Teknolojileri ve Kodlama",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "UYGLAB",
+          "gunler": {
+            "Salı": 3
+          }
+        },
+        {
+          "kod": "YET113",
+          "ad": "Ölçme Bilgisi",
+          "sinif": 1,
+          "hoca": "Öğr. Gör. Yasemin İÇMEZ",
+          "derslik": "AMFİ",
+          "gunler": {
+            "Perşembe": 3
+          }
+        },
+        {
+          "kod": "AİİT101",
+          "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. İzzet Bahri Ateşli",
+          "derslik": "UZEM",
+          "gunler": {
+            "Pazartesi": 2
+          }
+        },
+        {
+          "kod": "SEÇ201",
+          "ad": "Üniversite Seçmeli Dersi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/46",
+          "gunler": {
+            "Salı": 2
+          }
+        },
+        {
+          "kod": "TD101",
+          "ad": "Türk Dili I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Faruk Toydemir",
+          "derslik": "UZEM",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "YET201",
+          "ad": "Yenilenebilir Enerji Projesi Tasarımı",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/03",
+          "gunler": {
+            "Salı": 4
+          }
+        },
+        {
+          "kod": "YET203",
+          "ad": "Enerji Depolama ve Batarya Yönetim Sistemleri",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Buğra Şen",
+          "derslik": "1/46",
+          "gunler": {
+            "Çarşamba": 4
+          }
+        },
+        {
+          "kod": "YET205",
+          "ad": "Bakım ve Arıza Analizi",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ömer Öztürk",
+          "derslik": "Z/03",
+          "gunler": {
+            "Perşembe": 4
+          }
+        },
+        {
+          "kod": "YET209",
+          "ad": "Enerji Ormancılığı ve Uygulamaları",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. İlknur Demir",
+          "derslik": "1/44",
+          "gunler": {
+            "Cuma": 2
+          }
+        },
+        {
+          "kod": "YET223",
+          "ad": "Güç Elektroniği",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Ömer Öztürk",
+          "derslik": "2/22",
+          "gunler": {
+            "Çarşamba": 3
+          }
+        },
+        {
+          "kod": "İNG101",
+          "ad": "İngilizce I",
+          "sinif": 2,
+          "hoca": "Öğr. Gör. Mete Şen",
+          "derslik": "Z/21",
+          "gunler": {
+            "Salı": 2
+          }
+        }
+      ]
+    }
+  ]
+}
