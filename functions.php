@@ -17,9 +17,8 @@ const DURUMLAR = ['Devamsız', 'Raporlu'];
 // Haftanın günleri (date('N') 1 = Pazartesi ... 7 = Pazar)
 const GUNLER = [1 => 'Pazartesi', 2 => 'Salı', 3 => 'Çarşamba', 4 => 'Perşembe', 5 => 'Cuma', 6 => 'Cumartesi', 7 => 'Pazar'];
 
-// Başlangıçta seçili gelen program
+// Yeni kullanıcıya gösterilen bölüm
 const VARSAYILAN_BOLUM = 'Bilgisayar Programcılığı';
-const VARSAYILAN_SINIF = 2;
 
 
 /* ------------------------------------------------------------------
@@ -52,13 +51,80 @@ function bolumDersleri(array $programlar, string $bolumAdi): array
 
 
 /**
+ * Kullanıcının ders programını veritabanından okur.
+ * Sonuç: ['bolum' => 'Bilgisayar Programcılığı', 'dersler' => [['kod', 'ad', 'derslik', 'gunler'], ...]]
+ */
+function kullaniciProgrami(PDO $pdo, int $kullaniciId): array
+{
+    $sorgu = $pdo->prepare('SELECT bolum FROM kullanicilar WHERE id = :id');
+    $sorgu->execute(['id' => $kullaniciId]);
+    $bolum = (string)$sorgu->fetchColumn();
+
+    $sorgu = $pdo->prepare(
+        'SELECT ders_kodu, ders_adi, derslik, gunler FROM kullanici_dersleri
+         WHERE kullanici_id = :id ORDER BY ders_kodu'
+    );
+    $sorgu->execute(['id' => $kullaniciId]);
+
+    $dersler = [];
+    foreach ($sorgu->fetchAll() as $satir) {
+        $dersler[] = [
+            'kod'     => $satir['ders_kodu'],
+            'ad'      => $satir['ders_adi'],
+            'derslik' => $satir['derslik'],
+            'gunler'  => json_decode($satir['gunler'], true) ?: [],
+        ];
+    }
+
+    return ['bolum' => $bolum !== '' ? $bolum : VARSAYILAN_BOLUM, 'dersler' => $dersler];
+}
+
+
+/**
+ * Kullanıcının ders programını kaydeder.
+ * Eski dersler silinip yenileri eklenir. İkisi bir "transaction" içinde yapılır:
+ * arada hata olursa rollBack() ile hiçbir değişiklik kalmaz.
+ */
+function programKaydet(PDO $pdo, int $kullaniciId, string $bolum, array $dersler): void
+{
+    $pdo->beginTransaction();
+    try {
+        $pdo->prepare('UPDATE kullanicilar SET bolum = :bolum WHERE id = :id')
+            ->execute(['bolum' => $bolum, 'id' => $kullaniciId]);
+
+        $pdo->prepare('DELETE FROM kullanici_dersleri WHERE kullanici_id = :id')
+            ->execute(['id' => $kullaniciId]);
+
+        $ekle = $pdo->prepare(
+            'INSERT INTO kullanici_dersleri (kullanici_id, ders_kodu, ders_adi, derslik, gunler)
+             VALUES (:kullanici_id, :kod, :ad, :derslik, :gunler)'
+        );
+        foreach ($dersler as $ders) {
+            $ekle->execute([
+                'kullanici_id' => $kullaniciId,
+                'kod'          => $ders['kod'],
+                'ad'           => $ders['ad'],
+                'derslik'      => $ders['derslik'],
+                'gunler'       => json_encode($ders['gunler'], JSON_UNESCAPED_UNICODE),
+            ]);
+        }
+
+        $pdo->commit();
+    } catch (PDOException $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
+
+/**
  * Kullanıcının seçtiği derslerin sadece adlarını verir.
  * Form ve filtredeki ders listeleri buradan gelir.
  */
-function dersAdlari(): array
+function dersAdlari(array $program): array
 {
     $adlar = [];
-    foreach ($_SESSION['program']['dersler'] as $ders) {
+    foreach ($program['dersler'] as $ders) {
         $adlar[] = $ders['ad'];
     }
     return $adlar;
@@ -66,13 +132,13 @@ function dersAdlari(): array
 
 
 /**
- * Bugün (veya verilen günde) hangi dersler var, kaç saat?
+ * Verilen günde hangi dersler var, kaç saat?
  * Sonuç: [['ad' => 'Veri Tabanı I', 'saat' => 4, 'derslik' => 'UYGLAB'], ...]
  */
-function gununDersleri(string $gun): array
+function gununDersleri(array $program, string $gun): array
 {
     $sonuc = [];
-    foreach ($_SESSION['program']['dersler'] as $ders) {
+    foreach ($program['dersler'] as $ders) {
         if (isset($ders['gunler'][$gun])) {
             $sonuc[] = [
                 'ad'      => $ders['ad'],
@@ -85,35 +151,36 @@ function gununDersleri(string $gun): array
 }
 
 
-/**
- * Bir dersin haftada toplam kaç saat olduğunu hesaplar.
- */
-function haftalikSaat(array $ders): int
-{
-    return array_sum($ders['gunler']);
-}
-
-
 /* ------------------------------------------------------------------
- * OTURUM ($_SESSION) - sadece ders programı
+ * KULLANICILAR
  * ------------------------------------------------------------------ */
 
 /**
- * Ders programını $_SESSION içinde başlatır.
- * Kayıtlar artık MySQL'de tutuluyor; oturumda sadece seçilen ders programı var.
+ * Kullanıcı adına göre kullanıcıyı getirir. Yoksa null.
  */
-function oturumuHazirla(): void
+function kullaniciBul(PDO $pdo, string $kullaniciAdi): ?array
 {
-    if (!isset($_SESSION['program'])) {
-        $programlar = programlariYukle();
-        $secilenler = [];
-        foreach (bolumDersleri($programlar, VARSAYILAN_BOLUM) as $ders) {
-            if ($ders['sinif'] === VARSAYILAN_SINIF) {
-                $secilenler[] = $ders;
-            }
-        }
-        $_SESSION['program'] = ['bolum' => VARSAYILAN_BOLUM, 'dersler' => $secilenler];
-    }
+    $sorgu = $pdo->prepare('SELECT id, ad_soyad, kullanici_adi, parola_hash FROM kullanicilar WHERE kullanici_adi = :k');
+    $sorgu->execute(['k' => $kullaniciAdi]);
+    $kullanici = $sorgu->fetch();
+    return $kullanici === false ? null : $kullanici;
+}
+
+
+/**
+ * Yeni kullanıcı ekler. Parola password_hash() ile özetlenip öyle kaydedilir.
+ */
+function kullaniciEkle(PDO $pdo, string $adSoyad, string $kullaniciAdi, string $parola): int
+{
+    $sorgu = $pdo->prepare(
+        'INSERT INTO kullanicilar (ad_soyad, kullanici_adi, parola_hash) VALUES (:ad, :k, :hash)'
+    );
+    $sorgu->execute([
+        'ad'   => $adSoyad,
+        'k'    => $kullaniciAdi,
+        'hash' => password_hash($parola, PASSWORD_DEFAULT),
+    ]);
+    return (int)$pdo->lastInsertId();
 }
 
 
@@ -193,18 +260,25 @@ function tarihYaz(string $tarih): string
 
 
 /* ------------------------------------------------------------------
- * VERİTABANI İŞLEMLERİ (PDO)
+ * KAYIT İŞLEMLERİ (PDO)
  * Bütün sorgular hazırlanmış ifade (prepare + execute) ile çalışır.
  * Kullanıcıdan gelen değer SQL metnine eklenmez, :ad gibi yer tutuculara bağlanır.
  * Bu, SQL enjeksiyonunu önler.
+ *
+ * KAYIT SAHİPLİĞİ: Her sorguda "kullanici_id = :kullanici_id" koşulu var.
+ * Kullanıcı başka birinin kaydının id'sini bilse bile o satır sorguya hiç gelmez.
  * ------------------------------------------------------------------ */
 
 /**
- * Bütün kayıtları tarihe göre yeniden eskiye getirir.
+ * Kullanıcının bütün kayıtlarını tarihe göre yeniden eskiye getirir (sayaçlar için).
  */
-function kayitlariGetir(PDO $pdo): array
+function kayitlariGetir(PDO $pdo, int $kullaniciId): array
 {
-    $sorgu = $pdo->query('SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar ORDER BY tarih DESC, id DESC');
+    $sorgu = $pdo->prepare(
+        'SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar
+         WHERE kullanici_id = :kullanici_id ORDER BY tarih DESC, id DESC'
+    );
+    $sorgu->execute(['kullanici_id' => $kullaniciId]);
     return $sorgu->fetchAll();
 }
 
@@ -212,13 +286,14 @@ function kayitlariGetir(PDO $pdo): array
 /**
  * Yeni bir kayıt ekler ve eklenen kaydın id'sini döndürür.
  */
-function kayitEkle(PDO $pdo, array $kayit): int
+function kayitEkle(PDO $pdo, int $kullaniciId, array $kayit): int
 {
     $sorgu = $pdo->prepare(
-        'INSERT INTO kayitlar (ders, tarih, saat, durum, aciklama)
-         VALUES (:ders, :tarih, :saat, :durum, :aciklama)'
+        'INSERT INTO kayitlar (kullanici_id, ders, tarih, saat, durum, aciklama)
+         VALUES (:kullanici_id, :ders, :tarih, :saat, :durum, :aciklama)'
     );
     $sorgu->execute([
+        'kullanici_id' => $kullaniciId,
         'ders'     => $kayit['ders'],
         'tarih'    => $kayit['tarih'],
         'saat'     => $kayit['saat'],
@@ -246,10 +321,11 @@ const SIRALAMALAR = [
  * $kriter: q (arama metni), ders, durum, baslangic, bitis, sirala
  * Boş gelen kriter "hepsi" anlamına gelir. WHERE kısmı, dolu olan kriterlere göre parça parça kurulur.
  */
-function kayitlariAra(PDO $pdo, array $kriter): array
+function kayitlariAra(PDO $pdo, int $kullaniciId, array $kriter): array
 {
-    $kosullar = [];
-    $degerler = [];
+    // İlk koşul her zaman sahiplik: sadece bu kullanıcının kayıtları
+    $kosullar = ['kullanici_id = :kullanici_id'];
+    $degerler = ['kullanici_id' => $kullaniciId];
 
     if ($kriter['q'] !== '') {
         // LIKE içinde % ve _ özel anlam taşır; kullanıcı bunları yazarsa düz karakter olarak aransın
@@ -275,10 +351,8 @@ function kayitlariAra(PDO $pdo, array $kriter): array
         $degerler['bitis'] = $kriter['bitis'];
     }
 
-    $sql = 'SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar';
-    if (count($kosullar) > 0) {
-        $sql .= ' WHERE ' . implode(' AND ', $kosullar);
-    }
+    $sql = 'SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar
+            WHERE ' . implode(' AND ', $kosullar);
     $sql .= ' ORDER BY ' . SIRALAMALAR[$kriter['sirala']]['sql'];
 
     $sorgu = $pdo->prepare($sql);
@@ -324,12 +398,16 @@ function aramaKriterleri(array $get, array $dersler): array
 
 
 /**
- * Tek bir kaydı id'sine göre getirir. Bulunamazsa null döner.
+ * Tek bir kaydı id'sine göre getirir.
+ * Kayıt yoksa YA DA başka bir kullanıcıya aitse null döner.
  */
-function kayitGetir(PDO $pdo, int $id): ?array
+function kayitGetir(PDO $pdo, int $id, int $kullaniciId): ?array
 {
-    $sorgu = $pdo->prepare('SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar WHERE id = :id');
-    $sorgu->execute(['id' => $id]);
+    $sorgu = $pdo->prepare(
+        'SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar
+         WHERE id = :id AND kullanici_id = :kullanici_id'
+    );
+    $sorgu->execute(['id' => $id, 'kullanici_id' => $kullaniciId]);
     $kayit = $sorgu->fetch();
     return $kayit === false ? null : $kayit;
 }
@@ -338,12 +416,12 @@ function kayitGetir(PDO $pdo, int $id): ?array
 /**
  * Var olan bir kaydı günceller. Bir satır değiştiyse true döner.
  */
-function kayitGuncelle(PDO $pdo, int $id, array $kayit): bool
+function kayitGuncelle(PDO $pdo, int $id, int $kullaniciId, array $kayit): bool
 {
     $sorgu = $pdo->prepare(
         'UPDATE kayitlar
          SET ders = :ders, tarih = :tarih, saat = :saat, durum = :durum, aciklama = :aciklama
-         WHERE id = :id'
+         WHERE id = :id AND kullanici_id = :kullanici_id'
     );
     $sorgu->execute([
         'ders'     => $kayit['ders'],
@@ -352,6 +430,7 @@ function kayitGuncelle(PDO $pdo, int $id, array $kayit): bool
         'durum'    => $kayit['durum'],
         'aciklama' => $kayit['aciklama'],
         'id'       => $id,
+        'kullanici_id' => $kullaniciId,
     ]);
     return $sorgu->rowCount() > 0;
 }
@@ -359,11 +438,12 @@ function kayitGuncelle(PDO $pdo, int $id, array $kayit): bool
 
 /**
  * Bir kaydı siler. Silinen satır varsa true döner.
+ * Kayıt başka kullanıcıya aitse WHERE koşulu tutmaz, hiçbir şey silinmez.
  */
-function kayitSil(PDO $pdo, int $id): bool
+function kayitSil(PDO $pdo, int $id, int $kullaniciId): bool
 {
-    $sorgu = $pdo->prepare('DELETE FROM kayitlar WHERE id = :id');
-    $sorgu->execute(['id' => $id]);
+    $sorgu = $pdo->prepare('DELETE FROM kayitlar WHERE id = :id AND kullanici_id = :kullanici_id');
+    $sorgu->execute(['id' => $id, 'kullanici_id' => $kullaniciId]);
     return $sorgu->rowCount() > 0;
 }
 
@@ -372,10 +452,13 @@ function kayitSil(PDO $pdo, int $id): bool
  * Aynı derse aynı gün için zaten kayıt var mı?
  * Güncellemede kaydın kendisi sayılmasın diye $haricId verilebilir.
  */
-function kayitVarMi(PDO $pdo, string $ders, string $tarih, int $haricId = 0): bool
+function kayitVarMi(PDO $pdo, int $kullaniciId, string $ders, string $tarih, int $haricId = 0): bool
 {
-    $sorgu = $pdo->prepare('SELECT COUNT(*) FROM kayitlar WHERE ders = :ders AND tarih = :tarih AND id <> :haric');
-    $sorgu->execute(['ders' => $ders, 'tarih' => $tarih, 'haric' => $haricId]);
+    $sorgu = $pdo->prepare(
+        'SELECT COUNT(*) FROM kayitlar
+         WHERE kullanici_id = :kullanici_id AND ders = :ders AND tarih = :tarih AND id <> :haric'
+    );
+    $sorgu->execute(['kullanici_id' => $kullaniciId, 'ders' => $ders, 'tarih' => $tarih, 'haric' => $haricId]);
     return (int)$sorgu->fetchColumn() > 0;
 }
 

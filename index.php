@@ -3,18 +3,20 @@
  * DevamTakip - index.php (Ana sayfa)
  * Ders bazında kalan haklar, bugünkü dersler, özet sayaçlar, filtre ve kayıt listesi.
  */
-session_start();
+require 'oturum.php';
 require 'db.php';
 require 'functions.php';
-oturumuHazirla();
+
+$kullaniciId = girisGerekli();   // Giriş yoksa giris.php'ye gider
 
 $pdo      = baglanti();
-$kayitlar = kayitlariGetir($pdo);   // Kayıtlar artık MySQL'den geliyor
-$dersler  = dersAdlari();
+$program  = kullaniciProgrami($pdo, $kullaniciId);
+$kayitlar = kayitlariGetir($pdo, $kullaniciId);   // Sadece bu kullanıcının kayıtları
+$dersler  = dersAdlari($program);
 
 // --- Arama, filtre ve sıralama (GET ile adres çubuğundan gelir) ---
 $kriter        = aramaKriterleri($_GET, $dersler);
-$gosterilenler = kayitlariAra($pdo, $kriter);
+$gosterilenler = kayitlariAra($pdo, $kullaniciId, $kriter);
 $filtreVar     = $kriter['q'] !== '' || $kriter['ders'] !== '' || $kriter['durum'] !== ''
               || $kriter['baslangic'] !== '' || $kriter['bitis'] !== '';
 
@@ -51,7 +53,7 @@ usort($dersOzetleri, function ($a, $b) {
 // --- Bugünün dersleri ---
 $bugun      = date('Y-m-d');
 $bugunGun   = GUNLER[(int)date('N')];
-$bugunkuler = gununDersleri($bugunGun);
+$bugunkuler = gununDersleri($program, $bugunGun);
 
 // --- İşlem sonrası bilgi mesajı (ekle.php ve sil.php buraya yönlendirir) ---
 $mesajlar = [
@@ -122,11 +124,12 @@ include 'header.php';
                                 <strong><?= guvenli($ders['ad']) ?></strong>
                                 <span class="soluk"><?= $ders['saat'] ?> saat, <?= guvenli($ders['derslik']) ?></span>
                             </div>
-                            <?php if (kayitVarMi($pdo, $ders['ad'], $bugun)): ?>
+                            <?php if (kayitVarMi($pdo, $kullaniciId, $ders['ad'], $bugun)): ?>
                                 <span class="kaydedildi">Kaydedildi</span>
                             <?php else: ?>
                                 <!-- Hızlı ekleme: ekle.php'deki aynı doğrulamadan geçer -->
                                 <form method="post" action="ekle.php">
+                                    <?= csrfAlani() ?>
                                     <input type="hidden" name="ders" value="<?= guvenli($ders['ad']) ?>">
                                     <input type="hidden" name="tarih" value="<?= $bugun ?>">
                                     <input type="hidden" name="saat" value="<?= $ders['saat'] ?>">
@@ -214,6 +217,7 @@ include 'header.php';
                                 <a href="duzenle.php?id=<?= $kayit['id'] ?>" class="duzenle">Düzenle</a>
                                 <!-- Silme işlemi POST ile yapılır -->
                                 <form method="post" action="sil.php" onsubmit="return confirm('Bu kaydı silmek istediğine emin misin?');">
+                                    <?= csrfAlani() ?>
                                     <input type="hidden" name="id" value="<?= $kayit['id'] ?>">
                                     <button type="submit" class="sil">Sil</button>
                                 </form>

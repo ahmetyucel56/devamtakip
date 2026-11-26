@@ -5,31 +5,34 @@
  * Ana sayfadaki "Gitmedim" butonları da buraya POST eder.
  * Veriler PHP tarafında kontrol edilir; hata yoksa kayıt PDO ile MySQL'e eklenir.
  */
-session_start();
+require 'oturum.php';
 require 'db.php';
 require 'functions.php';
-oturumuHazirla();
+
+$kullaniciId = girisGerekli();   // Giriş yoksa giris.php'ye gider
 
 $pdo     = baglanti();
-$dersler = dersAdlari();
+$dersler = dersAdlari(kullaniciProgrami($pdo, $kullaniciId));
 $hatalar = [];
 
 // Formun başlangıç değerleri
 $veri = ['ders' => '', 'tarih' => date('Y-m-d'), 'saat' => '', 'durum' => 'Devamsız', 'aciklama' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrfKontrol();
+
     // 1) Temizle ve kontrol et (functions.php > kayitDogrula)
     [$veri, $hatalar] = kayitDogrula($_POST, $dersler);
 
     // 2) Aynı derse aynı gün için ikinci kayıt girilmesin
-    if (count($hatalar) === 0 && kayitVarMi($pdo, $veri['ders'], $veri['tarih'])) {
+    if (count($hatalar) === 0 && kayitVarMi($pdo, $kullaniciId, $veri['ders'], $veri['tarih'])) {
         $hatalar['tarih'] = 'Bu derse bu tarih için zaten kayıt var.';
     }
 
     // 3) Hata yoksa veritabanına ekle ve ana sayfaya dön (Post/Redirect/Get)
     if (count($hatalar) === 0) {
         $veri['saat'] = (int)$veri['saat'];
-        kayitEkle($pdo, $veri);
+        kayitEkle($pdo, $kullaniciId, $veri);   // Kayıt giriş yapan kullanıcıya ait olur
         header('Location: index.php?mesaj=eklendi');
         exit;
     }

@@ -9,6 +9,7 @@
 ?>
 <!-- novalidate: tarayıcı kontrolünü kapatır, böylece doğrulamayı PHP yapar -->
 <form method="post" action="<?= guvenli($formAction) ?>" class="panel form" novalidate>
+    <?= csrfAlani() ?>
     <?php if (isset($kayitId)): ?>
         <input type="hidden" name="id" value="<?= (int)$kayitId ?>">
     <?php endif; ?>

@@ -2,11 +2,16 @@
 /*
  * DevamTakip - program.php (Ders programım)
  * Okulun ders programından bölüm seçilir, alınan dersler işaretlenir.
- * Seçim $_SESSION['program'] içinde saklanır; ders listeleri ve "Bugün" paneli buradan gelir.
+ * Seçim kullanici_dersleri tablosunda, giriş yapan kullanıcıya ait olarak saklanır.
+ * Ders listeleri ve "Bugün" paneli buradan gelir.
  */
-session_start();
+require 'oturum.php';
+require 'db.php';
 require 'functions.php';
-oturumuHazirla();
+
+$kullaniciId = girisGerekli();
+$pdo         = baglanti();
+$program     = kullaniciProgrami($pdo, $kullaniciId);
 
 $programlar = programlariYukle();
 
@@ -20,6 +25,7 @@ $hata = '';
 
 // --- Kaydet: form POST ile gönderildiyse ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrfKontrol();
     $bolumAdi = $_POST['bolum'] ?? '';
     $secilenKodlar = $_POST['dersler'] ?? []; // checkbox'lar dizi olarak gelir: dersler[]
 
@@ -36,16 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        $_SESSION['program'] = ['bolum' => $bolumAdi, 'dersler' => $secilenDersler];
+        programKaydet($pdo, $kullaniciId, $bolumAdi, $secilenDersler);
         header('Location: index.php?mesaj=program');
         exit;
     }
 }
 
 // --- Gösterilecek bölüm (GET ile seçilir, yoksa kayıtlı bölüm) ---
-$gosterilenBolum = $_GET['bolum'] ?? $_SESSION['program']['bolum'];
+$gosterilenBolum = $_GET['bolum'] ?? $program['bolum'];
 if (!in_array($gosterilenBolum, $bolumAdlari, true)) {
-    $gosterilenBolum = $_SESSION['program']['bolum'];
+    $gosterilenBolum = $program['bolum'];
 }
 $bolumunDersleri = bolumDersleri($programlar, $gosterilenBolum);
 
@@ -58,8 +64,8 @@ foreach ($bolumunDersleri as $ders) {
         if ($ders['sinif'] === $hizliSinif) {
             $isaretliKodlar[] = $ders['kod'];
         }
-    } elseif ($gosterilenBolum === $_SESSION['program']['bolum']) {
-        foreach ($_SESSION['program']['dersler'] as $kayitli) {
+    } elseif ($gosterilenBolum === $program['bolum']) {
+        foreach ($program['dersler'] as $kayitli) {
             if ($kayitli['kod'] === $ders['kod']) {
                 $isaretliKodlar[] = $ders['kod'];
             }
@@ -70,7 +76,7 @@ foreach ($bolumunDersleri as $ders) {
 // Haftalık görünüm: kayıtlı dersleri günlere dağıt
 $hafta = [];
 foreach (['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'] as $gun) {
-    $hafta[$gun] = gununDersleri($gun);
+    $hafta[$gun] = gununDersleri($program, $gun);
 }
 
 $sayfaBasligi = 'Ders programım';
@@ -98,7 +104,12 @@ include 'header.php';
     <p class="bildirim hata"><?= guvenli($hata) ?></p>
 <?php endif; ?>
 
+<?php if (isset($_GET['yeni']) && count($program['dersler']) === 0): ?>
+    <p class="bildirim basarili">Hesabın oluşturuldu. Başlamak için aldığın dersleri seçip programını kaydet.</p>
+<?php endif; ?>
+
 <form method="post" action="program.php" class="panel">
+    <?= csrfAlani() ?>
     <input type="hidden" name="bolum" value="<?= guvenli($gosterilenBolum) ?>">
 
     <div class="sinif-kolonlari">
@@ -133,7 +144,7 @@ include 'header.php';
 
 <section class="hafta-bolumu">
     <h2>Haftalık görünüm</h2>
-    <p class="soluk"><?= guvenli($_SESSION['program']['bolum']) ?>, <?= count($_SESSION['program']['dersler']) ?> ders</p>
+    <p class="soluk"><?= guvenli($program['bolum']) ?>, <?= count($program['dersler']) ?> ders</p>
     <div class="tablo-kutu">
         <div class="hafta">
             <?php foreach ($hafta as $gun => $gunDersleri): ?>
