@@ -4,10 +4,12 @@
  * Ders bazında kalan haklar, bugünkü dersler, özet sayaçlar, filtre ve kayıt listesi.
  */
 session_start();
+require 'db.php';
 require 'functions.php';
 oturumuHazirla();
 
-$kayitlar = $_SESSION['kayitlar'];
+$pdo      = baglanti();
+$kayitlar = kayitlariGetir($pdo);   // Kayıtlar artık MySQL'den geliyor
 $dersler  = dersAdlari();
 
 // --- Filtre değerleri (GET ile adres çubuğundan gelir) ---
@@ -22,7 +24,7 @@ if (!in_array($seciliDurum, DURUMLAR, true)) {
     $seciliDurum = '';
 }
 
-$gosterilenler = tariheGoreSirala(kayitlariFiltrele($kayitlar, $seciliDers, $seciliDurum));
+$gosterilenler = kayitlariFiltrele($kayitlar, $seciliDers, $seciliDurum); // Sorgu zaten tarihe göre sıralı
 
 // --- Özet sayaçlar ---
 $toplamKayit  = count($kayitlar);
@@ -123,7 +125,7 @@ include 'header.php';
                                 <strong><?= guvenli($ders['ad']) ?></strong>
                                 <span class="soluk"><?= $ders['saat'] ?> saat, <?= guvenli($ders['derslik']) ?></span>
                             </div>
-                            <?php if (kayitVarMi($kayitlar, $ders['ad'], $bugun)): ?>
+                            <?php if (kayitVarMi($pdo, $ders['ad'], $bugun)): ?>
                                 <span class="kaydedildi">Kaydedildi</span>
                             <?php else: ?>
                                 <!-- Hızlı ekleme: ekle.php'deki aynı doğrulamadan geçer -->
@@ -201,13 +203,7 @@ include 'header.php';
                             <td><?= $kayit['saat'] ?> saat</td>
                             <td class="<?= $kayit['durum'] === 'Raporlu' ? 'durum-raporlu' : 'durum-devamsiz' ?>"><?= guvenli($kayit['durum']) ?></td>
                             <td class="soluk not"><?= guvenli($kayit['aciklama']) ?></td>
-                            <td class="sag">
-                                <!-- Silme işlemi POST ile yapılır -->
-                                <form method="post" action="sil.php" onsubmit="return confirm('Bu kaydı silmek istediğine emin misin?');">
-                                    <input type="hidden" name="id" value="<?= $kayit['id'] ?>">
-                                    <button type="submit" class="sil">Sil</button>
-                                </form>
-                            </td>
+                            <td class="sag"><!-- Düzenle / Sil: 3. hafta --></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

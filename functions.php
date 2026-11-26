@@ -95,37 +95,15 @@ function haftalikSaat(array $ders): int
 
 
 /* ------------------------------------------------------------------
- * OTURUM ($_SESSION)
+ * OTURUM ($_SESSION) - sadece ders programı
  * ------------------------------------------------------------------ */
 
 /**
- * Uygulama ilk açıldığında gösterilecek 5 örnek kayıt.
- * Her kayıtta 6 alan var: id, ders, tarih, saat, durum, aciklama.
- */
-function ornekKayitlar(): array
-{
-    return [
-        ['id' => 1, 'ders' => 'Veri Tabanı I',             'tarih' => '2026-10-07', 'saat' => 4, 'durum' => 'Devamsız', 'aciklama' => 'Otobüsü kaçırdım'],
-        ['id' => 2, 'ders' => 'Oyun Programlama',          'tarih' => '2026-10-07', 'saat' => 3, 'durum' => 'Devamsız', 'aciklama' => ''],
-        ['id' => 3, 'ders' => 'Nesne Tabanlı Programlama', 'tarih' => '2026-10-09', 'saat' => 4, 'durum' => 'Raporlu',  'aciklama' => 'Hastane raporu var'],
-        ['id' => 4, 'ders' => 'Mesleki Çözümleme I',       'tarih' => '2026-10-12', 'saat' => 4, 'durum' => 'Devamsız', 'aciklama' => 'Sabah dersine yetişemedim'],
-        ['id' => 5, 'ders' => 'Veri Tabanı I',             'tarih' => '2026-10-21', 'saat' => 4, 'durum' => 'Devamsız', 'aciklama' => ''],
-    ];
-}
-
-
-/**
- * Kayıtları ve ders programını $_SESSION içinde başlatır.
- * Oturumda veri yoksa (ilk açılış) örnek kayıtları ve varsayılan programı yükler.
- * Böylece sayfa yenilense de eklenen/silinen kayıtlar korunur.
+ * Ders programını $_SESSION içinde başlatır.
+ * Kayıtlar artık MySQL'de tutuluyor; oturumda sadece seçilen ders programı var.
  */
 function oturumuHazirla(): void
 {
-    if (!isset($_SESSION['kayitlar'])) {
-        $_SESSION['kayitlar'] = ornekKayitlar();
-        $_SESSION['sonId'] = 5; // Yeni kayıtlara verilecek id buradan devam eder
-    }
-
     if (!isset($_SESSION['program'])) {
         $programlar = programlariYukle();
         $secilenler = [];
@@ -247,15 +225,49 @@ function tarihYaz(string $tarih): string
 }
 
 
+/* ------------------------------------------------------------------
+ * VERİTABANI İŞLEMLERİ (PDO)
+ * Bütün sorgular hazırlanmış ifade (prepare + execute) ile çalışır.
+ * Kullanıcıdan gelen değer SQL metnine eklenmez, :ad gibi yer tutuculara bağlanır.
+ * Bu, SQL enjeksiyonunu önler.
+ * ------------------------------------------------------------------ */
+
+/**
+ * Bütün kayıtları tarihe göre yeniden eskiye getirir.
+ */
+function kayitlariGetir(PDO $pdo): array
+{
+    $sorgu = $pdo->query('SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar ORDER BY tarih DESC, id DESC');
+    return $sorgu->fetchAll();
+}
+
+
+/**
+ * Yeni bir kayıt ekler ve eklenen kaydın id'sini döndürür.
+ */
+function kayitEkle(PDO $pdo, array $kayit): int
+{
+    $sorgu = $pdo->prepare(
+        'INSERT INTO kayitlar (ders, tarih, saat, durum, aciklama)
+         VALUES (:ders, :tarih, :saat, :durum, :aciklama)'
+    );
+    $sorgu->execute([
+        'ders'     => $kayit['ders'],
+        'tarih'    => $kayit['tarih'],
+        'saat'     => $kayit['saat'],
+        'durum'    => $kayit['durum'],
+        'aciklama' => $kayit['aciklama'],
+    ]);
+    return (int)$pdo->lastInsertId();
+}
+
+
 /**
  * Aynı derse aynı gün için zaten kayıt var mı?
  */
-function kayitVarMi(array $kayitlar, string $ders, string $tarih): bool
+function kayitVarMi(PDO $pdo, string $ders, string $tarih): bool
 {
-    foreach ($kayitlar as $kayit) {
-        if ($kayit['ders'] === $ders && $kayit['tarih'] === $tarih) {
-            return true;
-        }
-    }
-    return false;
+    $sorgu = $pdo->prepare('SELECT COUNT(*) FROM kayitlar WHERE ders = :ders AND tarih = :tarih');
+    $sorgu->execute(['ders' => $ders, 'tarih' => $tarih]);
+    return (int)$sorgu->fetchColumn() > 0;
 }

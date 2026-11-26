@@ -3,11 +3,14 @@
  * DevamTakip - ekle.php (Yeni kayıt ekleme)
  * Form POST ile bu sayfanın kendisine gönderilir.
  * Ana sayfadaki "Gitmedim" butonları da buraya POST eder.
- * Veriler PHP tarafında kontrol edilir; hata yoksa kayıt $_SESSION'a eklenir.
+ * Veriler PHP tarafında kontrol edilir; hata yoksa kayıt PDO ile MySQL'e eklenir.
  */
 session_start();
+require 'db.php';
 require 'functions.php';
 oturumuHazirla();
+
+$pdo = baglanti();
 
 $dersler = dersAdlari();
 $hatalar = [];
@@ -62,22 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Aynı derse aynı gün için ikinci kayıt girilmesin
-    if (count($hatalar) === 0 && kayitVarMi($_SESSION['kayitlar'], $ders, $tarih)) {
+    if (count($hatalar) === 0 && kayitVarMi($pdo, $ders, $tarih)) {
         $hatalar['tarih'] = 'Bu derse bu tarih için zaten kayıt var.';
     }
 
     // 3) Hata yoksa kaydı ekle
     if (count($hatalar) === 0) {
-        $_SESSION['sonId']++;
-
-        $_SESSION['kayitlar'][] = [
-            'id'       => $_SESSION['sonId'],
+        kayitEkle($pdo, [
             'ders'     => $ders,
             'tarih'    => $tarih,
             'saat'     => (int)$saat,
             'durum'    => $durum,
             'aciklama' => $aciklama,
-        ];
+        ]);
 
         // Ana sayfaya yönlendir (sayfa yenilenince form tekrar gönderilmesin)
         header('Location: index.php?mesaj=eklendi');
