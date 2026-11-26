@@ -149,6 +149,7 @@ devamtakip/
 ├── footer.php         Ortak alt kısım
 ├── kurulum.sql        Veritabanı, tablolar ve örnek veriler
 ├── TESTLER.md         Test senaryoları ve sonuçları
+├── LICENSE            MIT lisansı
 ├── veri/
 │   └── programlar.json  Okulun ders programı (10 bölüm, 1. ve 2. sınıf)
 ├── assets/            CSS ve projeye gömülü fontlar
@@ -207,3 +208,7 @@ Bütün senaryolar XAMPP (PHP 8.2, MariaDB) üzerinde denendi. Ayrıntılar ve s
 - Ders programının da kullanıcıya göre veritabanında tutulmasına karar verdim.
 - Uygulamayı XAMPP'te iki farklı hesapla çalıştırıp birinin kaydını diğerinden açmayı, düzenlemeyi ve silmeyi denedim.
 - Kodu inceleyip PDO bağlantısının, oturumun ve sahiplik kontrolünün nasıl çalıştığını öğrendim (yukarıdaki açıklamalar).
+
+## Lisans
+
+Proje [MIT Lisansı](LICENSE) ile paylaşılmıştır. `assets/fonts/` içindeki Figtree ve Big Shoulders Display fontları kendi lisanslarıyla (SIL Open Font License) gelir; lisans metinleri aynı klasördedir. `veri/programlar.json` içindeki ders programı bilgisi Niksar MYO'ya aittir.
