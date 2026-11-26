@@ -263,11 +263,111 @@ function kayitEkle(PDO $pdo, array $kayit): int
 
 
 /**
- * Aynı derse aynı gün için zaten kayıt var mı?
+ * Tek bir kaydı id'sine göre getirir. Bulunamazsa null döner.
  */
-function kayitVarMi(PDO $pdo, string $ders, string $tarih): bool
+function kayitGetir(PDO $pdo, int $id): ?array
 {
-    $sorgu = $pdo->prepare('SELECT COUNT(*) FROM kayitlar WHERE ders = :ders AND tarih = :tarih');
-    $sorgu->execute(['ders' => $ders, 'tarih' => $tarih]);
+    $sorgu = $pdo->prepare('SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar WHERE id = :id');
+    $sorgu->execute(['id' => $id]);
+    $kayit = $sorgu->fetch();
+    return $kayit === false ? null : $kayit;
+}
+
+
+/**
+ * Var olan bir kaydı günceller. Bir satır değiştiyse true döner.
+ */
+function kayitGuncelle(PDO $pdo, int $id, array $kayit): bool
+{
+    $sorgu = $pdo->prepare(
+        'UPDATE kayitlar
+         SET ders = :ders, tarih = :tarih, saat = :saat, durum = :durum, aciklama = :aciklama
+         WHERE id = :id'
+    );
+    $sorgu->execute([
+        'ders'     => $kayit['ders'],
+        'tarih'    => $kayit['tarih'],
+        'saat'     => $kayit['saat'],
+        'durum'    => $kayit['durum'],
+        'aciklama' => $kayit['aciklama'],
+        'id'       => $id,
+    ]);
+    return $sorgu->rowCount() > 0;
+}
+
+
+/**
+ * Bir kaydı siler. Silinen satır varsa true döner.
+ */
+function kayitSil(PDO $pdo, int $id): bool
+{
+    $sorgu = $pdo->prepare('DELETE FROM kayitlar WHERE id = :id');
+    $sorgu->execute(['id' => $id]);
+    return $sorgu->rowCount() > 0;
+}
+
+
+/**
+ * Aynı derse aynı gün için zaten kayıt var mı?
+ * Güncellemede kaydın kendisi sayılmasın diye $haricId verilebilir.
+ */
+function kayitVarMi(PDO $pdo, string $ders, string $tarih, int $haricId = 0): bool
+{
+    $sorgu = $pdo->prepare('SELECT COUNT(*) FROM kayitlar WHERE ders = :ders AND tarih = :tarih AND id <> :haric');
+    $sorgu->execute(['ders' => $ders, 'tarih' => $tarih, 'haric' => $haricId]);
     return (int)$sorgu->fetchColumn() > 0;
+}
+
+
+/* ------------------------------------------------------------------
+ * FORM DOĞRULAMA (ekle.php ve duzenle.php ortak kullanır)
+ * ------------------------------------------------------------------ */
+
+/**
+ * Formdan gelen veriyi temizler ve kontrol eder.
+ * Dönüş: [temizlenmiş veri, hata dizisi]. Hata dizisi boşsa veri kaydedilebilir.
+ */
+function kayitDogrula(array $girdi, array $izinliDersler): array
+{
+    $veri = [
+        'ders'     => trim($girdi['ders'] ?? ''),
+        'tarih'    => trim($girdi['tarih'] ?? ''),
+        'saat'     => trim($girdi['saat'] ?? ''),
+        'durum'    => trim($girdi['durum'] ?? ''),
+        'aciklama' => trim($girdi['aciklama'] ?? ''),
+    ];
+    $hatalar = [];
+
+    if ($veri['ders'] === '') {
+        $hatalar['ders'] = 'Bir ders seçin.';
+    } elseif (!in_array($veri['ders'], $izinliDersler, true)) {
+        $hatalar['ders'] = 'Bu ders programında yok. Önce ders programına ekleyin.';
+    }
+
+    if ($veri['tarih'] === '') {
+        $hatalar['tarih'] = 'Tarih boş bırakılamaz.';
+    } else {
+        $tarihNesnesi = DateTime::createFromFormat('Y-m-d', $veri['tarih']);
+        if ($tarihNesnesi === false || $tarihNesnesi->format('Y-m-d') !== $veri['tarih']) {
+            $hatalar['tarih'] = 'Geçerli bir tarih girin.';
+        } elseif ($veri['tarih'] > date('Y-m-d')) {
+            $hatalar['tarih'] = 'İleri bir tarihe devamsızlık girilemez.';
+        }
+    }
+
+    if ($veri['saat'] === '') {
+        $hatalar['saat'] = 'Saat sayısı boş bırakılamaz.';
+    } elseif (!ctype_digit($veri['saat']) || (int)$veri['saat'] < 1 || (int)$veri['saat'] > 8) {
+        $hatalar['saat'] = 'Saat 1 ile 8 arasında tam sayı olmalı.';
+    }
+
+    if (!in_array($veri['durum'], DURUMLAR, true)) {
+        $hatalar['durum'] = 'Devamsız veya Raporlu seçin.';
+    }
+
+    if (mb_strlen($veri['aciklama']) > 150) {
+        $hatalar['aciklama'] = 'Not en fazla 150 karakter olabilir.';
+    }
+
+    return [$veri, $hatalar];
 }

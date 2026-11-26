@@ -1,11 +1,11 @@
 <?php
 /*
  * DevamTakip - sil.php (Kayıt silme)
- * Sadece POST isteğini kabul eder. Gelen id'ye sahip kaydı $_SESSION'dan çıkarır.
+ * Sadece POST isteğini kabul eder. Gelen id'ye sahip kaydı DELETE ile veritabanından siler.
  */
 session_start();
+require 'db.php';
 require 'functions.php';
-oturumuHazirla();
 
 // Sayfa adres çubuğundan (GET ile) açılırsa hiçbir şey silme, ana sayfaya dön
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -15,15 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $silinecekId = (int)($_POST['id'] ?? 0);
 
-foreach ($_SESSION['kayitlar'] as $sira => $kayit) {
-    if ($kayit['id'] === $silinecekId) {
-        unset($_SESSION['kayitlar'][$sira]);
-        break; // Kaydı bulduk, döngüye devam etmeye gerek yok
-    }
-}
+// kayitSil() silinen satır sayısına bakar: 0 ise böyle bir kayıt yoktur
+$silindi = kayitSil(baglanti(), $silinecekId);
 
-// unset sonrası dizinin sıra numaralarını (0, 1, 2...) yeniden düzenle
-$_SESSION['kayitlar'] = array_values($_SESSION['kayitlar']);
-
-header('Location: index.php?mesaj=silindi');
+header('Location: index.php?mesaj=' . ($silindi ? 'silindi' : 'bulunamadi'));
 exit;

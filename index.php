@@ -64,10 +64,12 @@ $bugunkuler = gununDersleri($bugunGun);
 // --- İşlem sonrası bilgi mesajı (ekle.php ve sil.php buraya yönlendirir) ---
 $mesajlar = [
     'eklendi' => 'Kayıt eklendi.',
-    'silindi' => 'Kayıt silindi.',
+    'silindi'     => 'Kayıt silindi.',
+    'guncellendi' => 'Kayıt güncellendi.',
     'program' => 'Ders programın kaydedildi.',
 ];
 $mesaj = $mesajlar[$_GET['mesaj'] ?? ''] ?? '';
+$hataMesaji = ($_GET['mesaj'] ?? '') === 'bulunamadi' ? 'Kayıt bulunamadı. Silinmiş olabilir.' : '';
 
 $sayfaBasligi = 'Haklarım';
 $aktifSayfa = 'ana';
@@ -76,6 +78,9 @@ include 'header.php';
 
 <?php if ($mesaj !== ''): ?>
     <p class="bildirim basarili"><?= guvenli($mesaj) ?></p>
+<?php endif; ?>
+<?php if ($hataMesaji !== ''): ?>
+    <p class="bildirim hata"><?= guvenli($hataMesaji) ?></p>
 <?php endif; ?>
 
 <div class="iki-kolon">
@@ -203,7 +208,14 @@ include 'header.php';
                             <td><?= $kayit['saat'] ?> saat</td>
                             <td class="<?= $kayit['durum'] === 'Raporlu' ? 'durum-raporlu' : 'durum-devamsiz' ?>"><?= guvenli($kayit['durum']) ?></td>
                             <td class="soluk not"><?= guvenli($kayit['aciklama']) ?></td>
-                            <td class="sag"><!-- Düzenle / Sil: 3. hafta --></td>
+                            <td class="sag islemler">
+                                <a href="duzenle.php?id=<?= $kayit['id'] ?>" class="duzenle">Düzenle</a>
+                                <!-- Silme işlemi POST ile yapılır -->
+                                <form method="post" action="sil.php" onsubmit="return confirm('Bu kaydı silmek istediğine emin misin?');">
+                                    <input type="hidden" name="id" value="<?= $kayit['id'] ?>">
+                                    <button type="submit" class="sil">Sil</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

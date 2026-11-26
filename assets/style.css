@@ -185,6 +185,9 @@ h2 { font-size: 22px; }
     cursor: pointer;
 }
 .sil:hover { text-decoration: underline; }
+.islemler { display: flex; justify-content: flex-end; align-items: center; gap: 4px; }
+.duzenle { font-size: 14px; font-weight: 600; padding: 8px; text-decoration: none; }
+.duzenle:hover { text-decoration: underline; }
 
 /* --- Kayıtlar --- */
 .kayitlar { margin-top: 48px; }
