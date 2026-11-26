@@ -12,19 +12,11 @@ $pdo      = baglanti();
 $kayitlar = kayitlariGetir($pdo);   // Kayıtlar artık MySQL'den geliyor
 $dersler  = dersAdlari();
 
-// --- Filtre değerleri (GET ile adres çubuğundan gelir) ---
-$seciliDers  = $_GET['ders']  ?? '';
-$seciliDurum = $_GET['durum'] ?? '';
-
-// Listede olmayan bir değer gelirse filtreyi yok say (güvenlik için)
-if (!in_array($seciliDers, $dersler, true)) {
-    $seciliDers = '';
-}
-if (!in_array($seciliDurum, DURUMLAR, true)) {
-    $seciliDurum = '';
-}
-
-$gosterilenler = kayitlariFiltrele($kayitlar, $seciliDers, $seciliDurum); // Sorgu zaten tarihe göre sıralı
+// --- Arama, filtre ve sıralama (GET ile adres çubuğundan gelir) ---
+$kriter        = aramaKriterleri($_GET, $dersler);
+$gosterilenler = kayitlariAra($pdo, $kriter);
+$filtreVar     = $kriter['q'] !== '' || $kriter['ders'] !== '' || $kriter['durum'] !== ''
+              || $kriter['baslangic'] !== '' || $kriter['bitis'] !== '';
 
 // --- Özet sayaçlar ---
 $toplamKayit  = count($kayitlar);
@@ -162,31 +154,41 @@ include 'header.php';
 <section class="kayitlar">
     <div class="bolum-ust">
         <h2>Kayıtlar</h2>
-        <!-- Filtre formu GET kullanır: seçim adres çubuğunda görünür -->
-        <form method="get" action="index.php" class="filtre">
-            <select name="ders" aria-label="Ders">
-                <option value="">Tüm dersler</option>
-                <?php foreach ($dersler as $ders): ?>
-                    <option value="<?= guvenli($ders) ?>" <?= $ders === $seciliDers ? 'selected' : '' ?>><?= guvenli($ders) ?></option>
-                <?php endforeach; ?>
-            </select>
-            <select name="durum" aria-label="Durum">
-                <option value="">Tüm durumlar</option>
-                <?php foreach (DURUMLAR as $durum): ?>
-                    <option value="<?= guvenli($durum) ?>" <?= $durum === $seciliDurum ? 'selected' : '' ?>><?= guvenli($durum) ?></option>
-                <?php endforeach; ?>
-            </select>
-            <button type="submit" class="buton ikincil">Filtrele</button>
-            <?php if ($seciliDers !== '' || $seciliDurum !== ''): ?>
-                <a href="index.php" class="temizle">Filtreyi kaldır</a>
-            <?php endif; ?>
-        </form>
+        <a href="ekle.php" class="buton-kucuk ekle-kisayol">Yeni kayıt</a>
     </div>
+
+    <!-- Arama/filtre formu GET kullanır: seçimler adres çubuğunda görünür, sayfa paylaşılabilir -->
+    <form method="get" action="index.php" class="filtre arama">
+        <input type="search" name="q" value="<?= guvenli($kriter['q']) ?>" placeholder="Ders veya not içinde ara" aria-label="Ara">
+        <select name="ders" aria-label="Ders">
+            <option value="">Tüm dersler</option>
+            <?php foreach ($dersler as $ders): ?>
+                <option value="<?= guvenli($ders) ?>" <?= $ders === $kriter['ders'] ? 'selected' : '' ?>><?= guvenli($ders) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <select name="durum" aria-label="Durum">
+            <option value="">Tüm durumlar</option>
+            <?php foreach (DURUMLAR as $durum): ?>
+                <option value="<?= guvenli($durum) ?>" <?= $durum === $kriter['durum'] ? 'selected' : '' ?>><?= guvenli($durum) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <label class="tarih-etiket">Başlangıç <input type="date" name="baslangic" value="<?= guvenli($kriter['baslangic']) ?>"></label>
+        <label class="tarih-etiket">Bitiş <input type="date" name="bitis" value="<?= guvenli($kriter['bitis']) ?>"></label>
+        <select name="sirala" aria-label="Sıralama">
+            <?php foreach (SIRALAMALAR as $anahtar => $secenek): ?>
+                <option value="<?= $anahtar ?>" <?= $anahtar === $kriter['sirala'] ? 'selected' : '' ?>><?= guvenli($secenek['etiket']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit" class="buton ikincil">Uygula</button>
+        <?php if ($filtreVar || $kriter['sirala'] !== 'yeni'): ?>
+            <a href="index.php" class="temizle">Temizle</a>
+        <?php endif; ?>
+    </form>
 
     <p class="soluk sonuc-bilgi"><?= count($gosterilenler) ?> / <?= $toplamKayit ?> kayıt</p>
 
     <?php if (count($gosterilenler) === 0): ?>
-        <p class="bos">Bu filtreye uyan kayıt yok.</p>
+        <p class="bos"><?= $filtreVar ? 'Bu aramaya uyan kayıt yok. Filtreleri temizleyip tekrar dene.' : 'Henüz kayıt yok. "Yeni kayıt" ile ilk devamsızlığını ekle.' ?></p>
     <?php else: ?>
         <div class="tablo-kutu">
             <table>

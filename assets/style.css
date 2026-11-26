@@ -194,6 +194,10 @@ h2 { font-size: 22px; }
 .bolum-ust { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
 .filtre { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .temizle { font-size: 14px; color: var(--soluk); }
+.arama { margin-top: 14px; }
+.arama input[type=search] { flex: 1 1 220px; min-width: 0; }
+.tarih-etiket { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--soluk); }
+.ekle-kisayol { text-decoration: none; }
 .sonuc-bilgi { margin: 12px 0 8px; font-size: 14px; }
 .bos { color: var(--soluk); padding: 16px 0; }
 

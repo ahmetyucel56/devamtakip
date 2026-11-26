@@ -184,39 +184,6 @@ function riskSeviyesi(int $kullanilan): array
 
 
 /**
- * Kayıtları derse ve/veya duruma göre filtreler.
- * Boş gelen filtre "hepsi" anlamına gelir.
- */
-function kayitlariFiltrele(array $kayitlar, string $ders, string $durum): array
-{
-    $sonuc = [];
-    foreach ($kayitlar as $kayit) {
-        if ($ders !== '' && $kayit['ders'] !== $ders) {
-            continue; // Ders uymuyorsa bu kaydı atla
-        }
-        if ($durum !== '' && $kayit['durum'] !== $durum) {
-            continue; // Durum uymuyorsa bu kaydı atla
-        }
-        $sonuc[] = $kayit;
-    }
-    return $sonuc;
-}
-
-
-/**
- * Kayıtları tarihe göre yeniden eskiye sıralar.
- * Tarihler "YYYY-AA-GG" biçiminde olduğu için metin olarak karşılaştırılabilir.
- */
-function tariheGoreSirala(array $kayitlar): array
-{
-    usort($kayitlar, function ($a, $b) {
-        return strcmp($b['tarih'], $a['tarih']);
-    });
-    return $kayitlar;
-}
-
-
-/**
  * "2026-10-07" biçimindeki tarihi "07.10.2026" biçimine çevirir.
  */
 function tarihYaz(string $tarih): string
@@ -259,6 +226,100 @@ function kayitEkle(PDO $pdo, array $kayit): int
         'aciklama' => $kayit['aciklama'],
     ]);
     return (int)$pdo->lastInsertId();
+}
+
+
+/**
+ * Sıralama seçenekleri. Adres çubuğundan gelen değer sadece bu listedeki
+ * anahtarlardan biri olabilir; ORDER BY kısmına kullanıcı metni hiç eklenmez.
+ */
+const SIRALAMALAR = [
+    'yeni' => ['etiket' => 'En yeni tarih',   'sql' => 'tarih DESC, id DESC'],
+    'eski' => ['etiket' => 'En eski tarih',   'sql' => 'tarih ASC, id ASC'],
+    'saat' => ['etiket' => 'En çok saat',     'sql' => 'saat DESC, tarih DESC'],
+    'ders' => ['etiket' => 'Ders adı (A-Z)',  'sql' => 'ders ASC, tarih DESC'],
+];
+
+
+/**
+ * Kayıtları arama, filtre ve sıralama kriterlerine göre getirir.
+ * $kriter: q (arama metni), ders, durum, baslangic, bitis, sirala
+ * Boş gelen kriter "hepsi" anlamına gelir. WHERE kısmı, dolu olan kriterlere göre parça parça kurulur.
+ */
+function kayitlariAra(PDO $pdo, array $kriter): array
+{
+    $kosullar = [];
+    $degerler = [];
+
+    if ($kriter['q'] !== '') {
+        // LIKE içinde % ve _ özel anlam taşır; kullanıcı bunları yazarsa düz karakter olarak aransın
+        $aranan = '%' . addcslashes($kriter['q'], '%_\\') . '%';
+        $kosullar[] = '(ders LIKE :q1 OR aciklama LIKE :q2)';
+        $degerler['q1'] = $aranan;
+        $degerler['q2'] = $aranan;
+    }
+    if ($kriter['ders'] !== '') {
+        $kosullar[] = 'ders = :ders';
+        $degerler['ders'] = $kriter['ders'];
+    }
+    if ($kriter['durum'] !== '') {
+        $kosullar[] = 'durum = :durum';
+        $degerler['durum'] = $kriter['durum'];
+    }
+    if ($kriter['baslangic'] !== '') {
+        $kosullar[] = 'tarih >= :baslangic';
+        $degerler['baslangic'] = $kriter['baslangic'];
+    }
+    if ($kriter['bitis'] !== '') {
+        $kosullar[] = 'tarih <= :bitis';
+        $degerler['bitis'] = $kriter['bitis'];
+    }
+
+    $sql = 'SELECT id, ders, tarih, saat, durum, aciklama FROM kayitlar';
+    if (count($kosullar) > 0) {
+        $sql .= ' WHERE ' . implode(' AND ', $kosullar);
+    }
+    $sql .= ' ORDER BY ' . SIRALAMALAR[$kriter['sirala']]['sql'];
+
+    $sorgu = $pdo->prepare($sql);
+    $sorgu->execute($degerler);
+    return $sorgu->fetchAll();
+}
+
+
+/**
+ * Adres çubuğundan (GET) gelen arama/filtre değerlerini temizler.
+ * Geçersiz bir değer gelirse o kriter boş sayılır.
+ */
+function aramaKriterleri(array $get, array $dersler): array
+{
+    $kriter = [
+        'q'         => trim($get['q'] ?? ''),
+        'ders'      => $get['ders'] ?? '',
+        'durum'     => $get['durum'] ?? '',
+        'baslangic' => $get['baslangic'] ?? '',
+        'bitis'     => $get['bitis'] ?? '',
+        'sirala'    => $get['sirala'] ?? 'yeni',
+    ];
+
+    $kriter['q'] = mb_substr($kriter['q'], 0, 50);   // Çok uzun arama metnini kısalt
+    if (!in_array($kriter['ders'], $dersler, true)) {
+        $kriter['ders'] = '';
+    }
+    if (!in_array($kriter['durum'], DURUMLAR, true)) {
+        $kriter['durum'] = '';
+    }
+    foreach (['baslangic', 'bitis'] as $alan) {
+        $t = DateTime::createFromFormat('Y-m-d', $kriter[$alan]);
+        if ($t === false || $t->format('Y-m-d') !== $kriter[$alan]) {
+            $kriter[$alan] = '';
+        }
+    }
+    if (!array_key_exists($kriter['sirala'], SIRALAMALAR)) {
+        $kriter['sirala'] = 'yeni';
+    }
+
+    return $kriter;
 }
 
 
