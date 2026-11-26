@@ -5,7 +5,7 @@
 **Öğrenci:** Ahmet Hilmi Yücel – 254309056
 **Sürüm:** 2.0 (vize sonrası beş haftalık görev, MySQL + PDO + kullanıcı girişi)
 
-Vize teslimindeki ilk sürüm (`$_SESSION` ile çalışan) git geçmişinde `v1.0-vize` etiketiyle duruyor.
+Vize teslimindeki ilk sürüm (`$_SESSION` ile çalışan) git geçmişinde duruyor: [a646ca0](https://github.com/ahmetyucel56/devamtakip/tree/a646ca0) commit'i. Vize sonrası her hafta ayrı bir commit olarak eklendi.
 
 ## Projenin amacı
 
